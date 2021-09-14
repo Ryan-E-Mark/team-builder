@@ -1,7 +1,8 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from './components/Form';
 import Friend from './components/Friend';
+import axios from 'axios';
 
 const initialFormValues = {
   username: '',
@@ -11,7 +12,9 @@ const initialFormValues = {
 }
 
 const friendList = [
-  { username: 'Tim', email: 'tims@gmail.com', role: 'Intermediate Programmer'}
+  { username: 'Tim', email: 'tims@gmail.com', role: 'Intermediate Programmer'},
+  { username: 'Anna', email: 'AisBest@msn.com', role: 'No Programming Experience'},
+  { username: 'Jose', email: 'JoseP@gmail.com', role: 'Experienced Programmer'}
 ]
 
 
@@ -44,9 +47,24 @@ function App() {
       setErrorMessage('');
     }
 
-    setPeople([newPerson, ...people]);
+    if (errorMessage != '') {
+      axios.post('fakeapi.com', newPerson)
+        .then(resp => {
+          const friendFromDb = resp.data;
+          setPeople([friendFromDb, ...people]);
+          setFormValues(initialFormValues);
+        })
+    }
+    
   }
 
+
+  useEffect(() => {
+    axios.get('fakeapi.com')
+      .then(res => {
+        setPeople(res.data);
+      })
+  })
 
   return (
    <div className="container">

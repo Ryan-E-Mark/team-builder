@@ -32,6 +32,7 @@ export default function Form(props) {
                         name="email"
                         onChange={onChange}
                         value={values.email}
+                        placeholder="Enter your email"
                         />
             </label>
             <label>

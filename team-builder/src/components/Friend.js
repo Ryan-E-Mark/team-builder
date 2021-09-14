@@ -7,7 +7,7 @@ export default function Friend(props) {
         <div>
             <h2>{info.username}</h2>
             <p>Email: {info.email}</p>
-            <p>Programming Experience: {info.role}</p>
+            <p>Programming Skill: {info.role}</p>
         </div>
     )
 }
