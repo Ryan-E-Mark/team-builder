@@ -29,7 +29,10 @@ function App() {
     setFormValues({...formValues, [inputName]: inputValue});
   }
 
-  const submitForm = () => {
+
+  
+  
+const submitForm = () => {
 
     const newPerson = {
       username: formValues.username.trim(),
@@ -47,24 +50,17 @@ function App() {
       setErrorMessage('');
     }
 
-    if (errorMessage != '') {
-      axios.post('fakeapi.com', newPerson)
-        .then(resp => {
-          const friendFromDb = resp.data;
-          setPeople([friendFromDb, ...people]);
+    if (!errorMessage) {
+          setPeople(people.concat(newPerson));
           setFormValues(initialFormValues);
-        })
+          
+        }
     }
     
-  }
+  
 
 
-  useEffect(() => {
-    axios.get('fakeapi.com')
-      .then(res => {
-        setPeople(res.data);
-      })
-  })
+  
 
   return (
    <div className="container">

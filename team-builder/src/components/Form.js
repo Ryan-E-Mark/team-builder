@@ -4,14 +4,17 @@ import React from 'react';
 export default function Form(props) {
     const { update, values, submit } = props;
 
-    const onChange = (evt => {
-        update({...values, [evt.target.name]: evt.target.value});
-    })
+    const onChange = evt => {
+        // update({...values, [evt.target.name]: evt.target.value});
+        const name = evt.target.name;
+        const value = evt.target.value;
+        update(name, value);
+    }
 
-    const onSubmit = (evt => {
+    const onSubmit = evt => {
         evt.preventDefault();
         submit();
-    })
+    }
 
 
     return (
@@ -38,7 +41,7 @@ export default function Form(props) {
             <label>
                 Role:
                     <select value={values.role} name="role" onChange={onChange}>
-                        <option value="">Select your Role</option>
+                        <option value="">What is your Programming Experience?</option>
                         <option value="No Programming Experience">No Programming Experience</option>
                         <option value="New Programmer">New Programmer</option>
                         <option value="Intermediate Programmer">Intermediate Programmer</option>
