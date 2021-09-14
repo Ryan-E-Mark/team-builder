@@ -40,22 +40,24 @@ const submitForm = () => {
       role: formValues.role
     }
 
+    
+    let error = "";
     if(!newPerson.username) {
-      setErrorMessage('You need to enter a username!')
+      error = 'You need to enter a username!';
     } else if (!newPerson.email) {
-      setErrorMessage('You need to enter an email!')
+      error = 'You need to enter an email!';
     } else if (!newPerson.role) {
-      setErrorMessage('Please select your role!')
+      error = 'Please select your role!';
     } else {
-      setErrorMessage('');
+      error = '';
     }
 
-    if (!errorMessage) {
-          setPeople(people.concat(newPerson));
-          setFormValues(initialFormValues);
-          
-        }
+  
+    if (!error) {
+      setPeople(people.concat(newPerson));
+      setFormValues(initialFormValues);
     }
+  }//end function submitForm
     
   
 
